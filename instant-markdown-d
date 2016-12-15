@@ -62,6 +62,7 @@ function addSecurityHeaders(req, res, isIndexFile) {
   var HTTP_HOST = req.headers.host || 'localhost:8090';
   var CSP_SELF = 'http://' + HTTP_HOST;
 
+  /*
   if (!process.env.INSTANT_MARKDOWN_ALLOW_UNSAFE_CONTENT) {
     if (isIndexFile) {
       // index.html will drop the scripting capabilities upon load.
@@ -71,6 +72,7 @@ function addSecurityHeaders(req, res, isIndexFile) {
       csp.push('script-src ');
     }
   }
+  */
   if (process.env.INSTANT_MARKDOWN_BLOCK_EXTERNAL) {
     csp.push('default-src data: ' + CSP_SELF);
     csp.push("style-src data: 'unsafe-inline' " + CSP_SELF);

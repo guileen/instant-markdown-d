@@ -23,12 +23,14 @@
     }
   </style>
   <script src="/socket.io/socket.io.js"></script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_CHTML"></script>
   <script>
     var socket = io.connect('http://'+ window.location.host +'/');
     socket.on('connect', function () {
       setDisconnected(false);
       socket.on('newContent', function(newHTML) {
         document.querySelector(".markdown-body").innerHTML = newHTML;
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
       });
       socket.on('die', function(newHTML) {
         window.open('', '_self', '');
